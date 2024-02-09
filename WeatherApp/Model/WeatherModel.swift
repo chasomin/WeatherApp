@@ -42,7 +42,7 @@ struct Main: Decodable {
 
 struct Wind: Decodable {
     let speed: Double
-    let gust: Double
+    let gust: Double?
 }
 
 struct Rain: Decodable {

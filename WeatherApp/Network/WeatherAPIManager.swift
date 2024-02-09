@@ -48,13 +48,13 @@ struct WeatherAPIManager {
                 print(RequestError.invailData.rawValue)
                 return
             }
-            
             do {
                 let result = try JSONDecoder().decode(type, from: data)
                 completionHandler(result, nil)
                 
             } catch {
                 completionHandler(nil, .invailData)
+                print(error)
                 print(RequestError.invailData.rawValue)
             }
             

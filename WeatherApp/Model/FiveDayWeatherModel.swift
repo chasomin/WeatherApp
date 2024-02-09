@@ -8,7 +8,7 @@
 import Foundation
 
 struct FiveDayWeather: Decodable {
-    let list: WeatherList
+    let list: [WeatherList]
 }
 
 struct WeatherList: Decodable {
