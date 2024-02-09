@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+protocol ConfigureUI {
+    func configureHierarchy()
+    func configureLayout()
+    func configureView()
+}
