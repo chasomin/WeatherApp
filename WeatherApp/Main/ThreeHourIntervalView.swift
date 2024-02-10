@@ -34,15 +34,18 @@ final class ThreeHourIntervalView: BaseView {
     
     override func configureLayout() {
         title.snp.makeConstraints { make in
-            make.horizontalEdges.top.equalToSuperview().inset(5)
+            make.height.equalTo(20)
+            make.horizontalEdges.top.equalTo(safeAreaLayoutGuide).inset(5)
         }
         
         indicator.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview().inset(5)
             make.top.equalTo(title.snp.bottom).offset(5)
+            make.height.equalTo(1)
         }
         collectionView.snp.makeConstraints { make in
             make.horizontalEdges.bottom.equalToSuperview().inset(5)
+            make.height.equalTo(200)
             make.top.equalTo(indicator.snp.bottom).offset(5)
         }
     }

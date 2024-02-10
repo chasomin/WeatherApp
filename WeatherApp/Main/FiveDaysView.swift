@@ -21,12 +21,13 @@ class FiveDaysView: BaseView {
     override func configureLayout() {
         title.snp.makeConstraints { make in
             make.top.leading.equalToSuperview().inset(5)
+            make.height.equalTo(20)
         }
         
         tableView.snp.makeConstraints { make in
             make.horizontalEdges.bottom.equalToSuperview().inset(5)
             make.top.equalTo(title.snp.bottom).offset(5)
-            
+            make.height.equalTo(500)
         }
     }
     

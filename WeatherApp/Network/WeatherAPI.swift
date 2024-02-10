@@ -33,12 +33,14 @@ enum WeatherAPI {
             [
                 URLQueryItem(name: "appid", value: appid ),
                 URLQueryItem(name: "id", value: String(id)),
+              //  URLQueryItem(name: "lang", value: "kr"),
             ]
         case .currentCoodinate(let appid, let lat, let lon), .fiveDayCoodinate(let appid, let lat, let lon):
             [
                 URLQueryItem(name: "appid", value: appid),
                 URLQueryItem(name: "lat", value: String(lat)),
-                URLQueryItem(name: "lon", value: String(lon))
+                URLQueryItem(name: "lon", value: String(lon)),
+               // URLQueryItem(name: "lang", value: "kr"),
             ]
 
         }
