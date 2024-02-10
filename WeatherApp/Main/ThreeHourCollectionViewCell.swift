@@ -7,6 +7,18 @@
 
 import UIKit
 
-class ThreeHourCollectionViewCell: UICollectionViewCell {
+final class ThreeHourCollectionViewCell: BaseCollectionViewCell {
     
+    
+    override func configureHierarchy() {
+        
+    }
+    
+    override func configureLayout() {
+        
+    }
+    
+    override func configureView() {
+        
+    }
 }
