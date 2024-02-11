@@ -52,7 +52,7 @@ final class ThreeHourIntervalView: BaseView {
     
     override func configureView() {
         
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .clear
         
         
         title.label.text = "3시간 간격 날씨"

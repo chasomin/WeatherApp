@@ -18,3 +18,18 @@ extension UIViewController {
     }
 }
 
+
+extension UIViewController {
+    func setTableView(tableView: UITableView, delegate: UITableViewDelegate, dataSource: UITableViewDataSource, cell: AnyClass, id: String) {
+        tableView.delegate = delegate
+        tableView.dataSource = dataSource
+        tableView.register(cell, forCellReuseIdentifier: id)
+    }
+    
+    
+    func setCollectionView(collectionView: UICollectionView, delegate: UICollectionViewDelegate, dataSource: UICollectionViewDataSource, cell: AnyClass, id: String) {
+        collectionView.delegate = delegate
+        collectionView.dataSource = dataSource
+        collectionView.register(cell, forCellWithReuseIdentifier: id)
+    }
+}

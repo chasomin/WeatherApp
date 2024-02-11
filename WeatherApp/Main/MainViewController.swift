@@ -18,16 +18,12 @@ final class MainViewController: UIViewController {
         
         super.viewDidLoad()
         
-        mainView.fiveDaysView.tableView.delegate = self
-        mainView.fiveDaysView.tableView.dataSource = self
-        mainView.fiveDaysView.tableView.register(FiveDaysTableViewCell.self, forCellReuseIdentifier: "1")
-        mainView.threeHourView.collectionView.delegate = self
-        mainView.threeHourView.collectionView.dataSource = self
-        mainView.threeHourView.collectionView.register(ThreeHourCollectionViewCell.self, forCellWithReuseIdentifier: "2")
+        let tableView = mainView.fiveDaysView.tableView
+        let collectionView = mainView.threeHourView.collectionView
+        setTableView(tableView: tableView, delegate: self, dataSource: self, cell: FiveDaysTableViewCell.self, id: FiveDaysTableViewCell.id)
+        setCollectionView(collectionView: collectionView, delegate: self, dataSource: self, cell: ThreeHourCollectionViewCell.self, id: ThreeHourCollectionViewCell.id)
         
         
-        mainView.scrollView.delegate = self
-    //TODO: delegate 함수로 만들기~, 컬렉션뷰도 있음~
         WeatherAPIManager.shared.callRequest(api: .current(appid: "91d1bdf68443fc402651e2aedc1d640c", id: 1846266), type: CurrentWeather.self) { result, error in
             print(result)
         }
@@ -42,7 +38,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "1", for: indexPath) as! FiveDaysTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: FiveDaysTableViewCell.id, for: indexPath) as! FiveDaysTableViewCell
         cell.dayLabel.text = "2/10"
         cell.iconImageView.image = UIImage(systemName: "star")
         cell.maxTempLabel.text = "10"
@@ -59,7 +55,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "2", for: indexPath) as! ThreeHourCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThreeHourCollectionViewCell.id, for: indexPath) as! ThreeHourCollectionViewCell
         
     return cell
     }
@@ -67,6 +63,3 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
 }
 
-extension MainViewController: UIScrollViewDelegate {
-//    scrollview
-}
