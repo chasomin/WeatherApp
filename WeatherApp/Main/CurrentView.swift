@@ -67,9 +67,8 @@ final class CurrentView: BaseView {
     
     func setData(data: CurrentWeather) {
         cityLabel.text = data.name
-        guard let main = data.main else { return }
-        currentTempLabel.text = "\(main.temp)"
+        currentTempLabel.text = "\(data.main.tempRound)"
         descriptionLabel.text = data.weather.first?.main
-        maxMinTemp.text = "\(main.tempMax) | \(main.tempMin)"
+        maxMinTemp.text = "\(data.main.tempMaxRound) | \(data.main.tempMinRound)"
     }
 }

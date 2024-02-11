@@ -25,24 +25,24 @@ class FiveDaysTableViewCell: BaseTableViewCell {
         dayLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview()
             make.verticalEdges.equalToSuperview().inset(5)
-            make.width.equalTo(100)
+            make.width.equalTo(80)
         }
         
         iconImageView.snp.makeConstraints { make in
             make.leading.equalTo(dayLabel.snp.trailing).offset(10)
             make.verticalEdges.equalToSuperview().inset(5)
-            make.width.equalTo(30)
+            make.width.equalTo(80)
         }
         
         minTempLabel.snp.makeConstraints { make in
             make.leading.equalTo(iconImageView.snp.trailing).offset(10)
             make.verticalEdges.equalToSuperview().inset(5)
-            make.width.equalTo(70)
+            make.width.equalTo(50)
         }
         maxTempLabel.snp.makeConstraints { make in
             make.leading.equalTo(minTempLabel.snp.trailing).offset(10)
             make.verticalEdges.equalToSuperview().inset(5)
-            make.width.equalTo(70)
+            make.width.equalTo(50)
             make.trailing.equalToSuperview().priority(.required)
         }
 
@@ -50,6 +50,7 @@ class FiveDaysTableViewCell: BaseTableViewCell {
     
     override func configureView() {
         backgroundColor = .clear
+        selectionStyle = .none
         dayLabel.textColor = .white
         dayLabel.textAlignment = .left
         dayLabel.font = .boldSystemFont(ofSize: 15)
@@ -67,11 +68,11 @@ class FiveDaysTableViewCell: BaseTableViewCell {
     }
     
     func configureCell(data: FiveDayWeather, index: Int) {
-        let result = data.list[index]
-        dayLabel.text = result.dt_txt
+        let result = data.resultList[index]
+        dayLabel.text = result.week
         iconImageView.kf.setImage(with: URL(string: result.weather.first?.icon ?? ""))
-        maxTempLabel.text = "\(result.main.tempMax)"
-        minTempLabel.text = "\(result.main.tempMax)"
+        maxTempLabel.text = result.main.tempMaxRound
+        minTempLabel.text = result.main.tempMinRound
 
     }
 }

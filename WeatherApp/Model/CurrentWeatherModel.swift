@@ -10,7 +10,7 @@ import Foundation
 struct CurrentWeather: Decodable {
     let coord: Coordinate
     let weather: [Weather]
-    let main: Main?
+    let main: Main
     let wind: Wind
     let rain: Rain?
     let snow: Snow?

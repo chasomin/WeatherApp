@@ -53,6 +53,18 @@ struct Main: Decodable {
         self.tempMax = try container.decode(Double.self, forKey: .tempMax) - 273.15
         self.humidity = try container.decode(Int.self, forKey: .humidity)
     }
+    
+    var tempRound: String {
+        "\(Int(round(temp)))º"
+    }
+    
+    var tempMinRound: String {
+        "\(Int(round(tempMin)))º"
+    }
+    var tempMaxRound: String {
+        "\(Int(round(tempMax)))º"
+    }
+
 }
 
 struct Wind: Decodable {

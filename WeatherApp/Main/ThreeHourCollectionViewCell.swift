@@ -59,8 +59,8 @@ final class ThreeHourCollectionViewCell: BaseCollectionViewCell {
     
     func configureCell(data: FiveDayWeather, index: Int) {
         let result = data.list[index]
-        hourLabel.text = result.dt_txt  //  TODO: 시간만 자르기
+        hourLabel.text = result.time
         iconImageView.kf.setImage(with: URL(string: result.weather.first?.icon ?? ""))
-        tempLabel.text = "\(result.main.temp)"
+        tempLabel.text = result.main.tempRound
     }
 }

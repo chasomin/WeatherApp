@@ -22,13 +22,15 @@ final class MainViewController: UIViewController {
         
         super.viewDidLoad()
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(searchButtonTapped))
+        
         let tableView = mainView.fiveDaysView.tableView
         let collectionView = mainView.threeHourView.collectionView
         setTableView(tableView: tableView, delegate: self, dataSource: self, cell: FiveDaysTableViewCell.self, id: FiveDaysTableViewCell.id)
         setCollectionView(collectionView: collectionView, delegate: self, dataSource: self, cell: ThreeHourCollectionViewCell.self, id: ThreeHourCollectionViewCell.id)
         
-        // TODO: group, data Double 반올림
-        WeatherAPIManager.shared.callRequest(api: .current(appid: APIkey.key, id: 1846266), type: CurrentWeather.self) { result, error in
+        // TODO: group
+        WeatherAPIManager.shared.callRequest(api: .current(appid: APIkey.key, id: 1835847), type: CurrentWeather.self) { result, error in
             if error == nil {
                 guard let result else {
                     return
@@ -36,7 +38,7 @@ final class MainViewController: UIViewController {
                 self.mainView.currentView.setData(data: result)
             }
         }
-        WeatherAPIManager.shared.callRequest(api: .fiveDay(appid: APIkey.key, id: 1846266), type: FiveDayWeather.self) { result, error in
+        WeatherAPIManager.shared.callRequest(api: .fiveDay(appid: APIkey.key, id: 1835847), type: FiveDayWeather.self) { result, error in
             if error == nil {
                 guard let result else {
                     return
@@ -48,12 +50,15 @@ final class MainViewController: UIViewController {
         }
         
     }
+    
+    @objc func searchButtonTapped() {
+        // TODO: 검색 뷰 이동
+    }
 }
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
-    //TODO: 데이터 시간 없이 날짜별로 잘라서 나타내기
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fiveDaysData.list.count
+        return fiveDaysData.resultList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
