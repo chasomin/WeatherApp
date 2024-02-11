@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 final class ThreeHourIntervalView: BaseView {
+    let backgroundView = BlackAlphaBackgroundView()
     let title = SectionTitleLabel()
     let divider = DividerView()
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
@@ -27,12 +28,17 @@ final class ThreeHourIntervalView: BaseView {
     }
     
     override func configureHierarchy() {
+        addSubview(backgroundView)
         addSubview(title)
         addSubview(divider)
         addSubview(collectionView)
     }
     
     override func configureLayout() {
+        backgroundView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
         title.snp.makeConstraints { make in
             make.height.equalTo(20)
             make.horizontalEdges.top.equalTo(safeAreaLayoutGuide).inset(5)
@@ -51,11 +57,9 @@ final class ThreeHourIntervalView: BaseView {
     }
     
     override func configureView() {
-        
         collectionView.backgroundColor = .clear
         
-        
-        title.label.text = "3시간 간격 날씨"
-        title.icon.image = UIImage(systemName: "calendar")
+        title.label.text = "3시간 간격 일기예보"
+        title.icon.image = UIImage(systemName: "clock")
     }
 }

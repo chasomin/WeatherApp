@@ -9,18 +9,23 @@ import UIKit
 import SnapKit
 
 class FiveDaysView: BaseView {
+    let backgroundView = BlackAlphaBackgroundView()
     
     let title = SectionTitleLabel()
     let divider = DividerView()
     let tableView = UITableView()
     
     override func configureHierarchy() {
+        addSubview(backgroundView)
         addSubview(title)
         addSubview(divider)
         addSubview(tableView)
     }
     
     override func configureLayout() {
+        backgroundView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         title.snp.makeConstraints { make in
             make.top.leading.equalToSuperview().inset(5)
             make.height.equalTo(20)
@@ -39,6 +44,7 @@ class FiveDaysView: BaseView {
     }
     
     override func configureView() {
+
         tableView.rowHeight = 50
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .singleLine

@@ -13,6 +13,8 @@ final class MainView: BaseView {
     let scrollView = UIScrollView()
     let contentView = UIView()
     
+    let backgroundImageView = UIImageView()
+    
     let currentView = CurrentView()
     let threeHourView = ThreeHourIntervalView()
     let fiveDaysView = FiveDaysView()
@@ -20,6 +22,8 @@ final class MainView: BaseView {
     override func configureHierarchy() {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
+        
+        contentView.addSubview(backgroundImageView)
         
         contentView.addSubview(currentView)
         contentView.addSubview(threeHourView)
@@ -37,6 +41,10 @@ final class MainView: BaseView {
             make.height.equalTo(1000)  // 높이 지정 필요??
         }
         
+        backgroundImageView.snp.makeConstraints { make in
+            make.edges.equalTo(self)
+        }
+        
         currentView.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(contentView)
             make.top.equalTo(contentView).offset(20)
@@ -44,12 +52,12 @@ final class MainView: BaseView {
         
         threeHourView.snp.makeConstraints { make in
             make.top.equalTo(currentView.snp.bottom).offset(20)
-            make.horizontalEdges.equalTo(contentView)
+            make.horizontalEdges.equalTo(contentView).inset(20)
             make.height.equalTo(300)
         }
         fiveDaysView.snp.makeConstraints { make in
             make.top.equalTo(threeHourView.snp.bottom).offset(20)
-            make.horizontalEdges.equalTo(contentView)
+            make.horizontalEdges.equalTo(contentView).inset(20)
             make.height.equalTo(300)
             
         }
@@ -59,6 +67,10 @@ final class MainView: BaseView {
         backgroundColor = .black
         scrollView.showsVerticalScrollIndicator = true
         scrollView.contentSize = CGSize(width: frame.width, height: frame.height * 2)
+        
+        backgroundImageView.kf.setImage(with: URL(string: "https://images.pexels.com/photos/695657/pexels-photo-695657.jpeg?auto=compress&cs=tinysrgb&w=1200"))
+        backgroundImageView.contentMode = .scaleAspectFill
+        backgroundImageView.alpha = 0.8
     }
     
 }

@@ -19,7 +19,9 @@ final class SectionTitleLabel: BaseView {
     
     override func configureLayout() {
         icon.snp.makeConstraints { make in
-            make.leading.verticalEdges.equalToSuperview()
+            make.verticalEdges.equalToSuperview()
+            make.leading.equalToSuperview().inset(10)
+            make.height.width.equalTo(12)
             
         }
         
