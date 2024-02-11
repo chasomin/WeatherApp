@@ -16,7 +16,7 @@ final class MainViewController: UIViewController {
         view = mainView
     }
     
-    //var currentData = CurrentWeather(coord: Coordinate(lat: 0, lon: 0), weather: [], main: Main(from: <#T##Decoder#>), wind: Wind(speed: 0, gust: 0), rain: Rain(oneHour: 0), snow: Snow(oneHour: 0), clouds: Cloud(all: 0), id: 0, name: "")
+//    var currentData =
     var data = FiveDayWeather(list: [])
     
     override func viewDidLoad() {
@@ -29,7 +29,7 @@ final class MainViewController: UIViewController {
         setCollectionView(collectionView: collectionView, delegate: self, dataSource: self, cell: ThreeHourCollectionViewCell.self, id: ThreeHourCollectionViewCell.id)
         
         
-        WeatherAPIManager.shared.callRequest(api: .fiveDay(appid: "91d1bdf68443fc402651e2aedc1d640c", id: 1846266), type: FiveDayWeather.self) { result, error in
+        WeatherAPIManager.shared.callRequest(api: .fiveDay(appid: "", id: 1846266), type: FiveDayWeather.self) { result, error in
             if error == nil {
                 guard let result else {
                     return
