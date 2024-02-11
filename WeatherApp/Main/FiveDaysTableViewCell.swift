@@ -24,7 +24,7 @@ class FiveDaysTableViewCell: BaseTableViewCell {
         dayLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview()
             make.verticalEdges.equalToSuperview().inset(5)
-            make.width.equalTo(40)
+            make.width.equalTo(100)
         }
         
         iconImageView.snp.makeConstraints { make in
@@ -36,18 +36,19 @@ class FiveDaysTableViewCell: BaseTableViewCell {
         minTempLabel.snp.makeConstraints { make in
             make.leading.equalTo(iconImageView.snp.trailing).offset(10)
             make.verticalEdges.equalToSuperview().inset(5)
-            make.width.equalTo(30)
+            make.width.equalTo(70)
         }
         maxTempLabel.snp.makeConstraints { make in
             make.leading.equalTo(minTempLabel.snp.trailing).offset(10)
             make.verticalEdges.equalToSuperview().inset(5)
-            make.width.equalTo(30)
-            make.trailing.equalToSuperview().priority(.high)
+            make.width.equalTo(70)
+            make.trailing.equalToSuperview().priority(.required)
         }
 
     }
     
     override func configureView() {
+        backgroundColor = .clear
         dayLabel.textColor = .white
         dayLabel.textAlignment = .left
         dayLabel.font = .boldSystemFont(ofSize: 15)
@@ -61,6 +62,15 @@ class FiveDaysTableViewCell: BaseTableViewCell {
         maxTempLabel.textColor = .white
         maxTempLabel.textAlignment = .center
         maxTempLabel.font = .boldSystemFont(ofSize: 15)
+
+    }
+    
+    func configureCell(data: FiveDayWeather, index: Int) {
+        let result = data.list[index]
+        dayLabel.text = result.dt_txt
+        iconImageView.kf.setImage(with: URL(string: result.weather.first?.icon ?? ""))
+        maxTempLabel.text = "\(result.main.tempMax)"
+        minTempLabel.text = "\(result.main.tempMax)"
 
     }
 }

@@ -51,6 +51,7 @@ struct WeatherAPIManager {
             do {
                 let result = try JSONDecoder().decode(type, from: data)
                 completionHandler(result, nil)
+                print(result)
                 
             } catch {
                 completionHandler(nil, .invailData)

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class MainViewController: UIViewController {
 
@@ -14,6 +15,10 @@ final class MainViewController: UIViewController {
     override func loadView() {
         view = mainView
     }
+    
+    //var currentData = CurrentWeather(coord: Coordinate(lat: 0, lon: 0), weather: [], main: Main(from: <#T##Decoder#>), wind: Wind(speed: 0, gust: 0), rain: Rain(oneHour: 0), snow: Snow(oneHour: 0), clouds: Cloud(all: 0), id: 0, name: "")
+    var data = FiveDayWeather(list: [])
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -24,8 +29,16 @@ final class MainViewController: UIViewController {
         setCollectionView(collectionView: collectionView, delegate: self, dataSource: self, cell: ThreeHourCollectionViewCell.self, id: ThreeHourCollectionViewCell.id)
         
         
-        WeatherAPIManager.shared.callRequest(api: .current(appid: "91d1bdf68443fc402651e2aedc1d640c", id: 1846266), type: CurrentWeather.self) { result, error in
-            print(result)
+        WeatherAPIManager.shared.callRequest(api: .fiveDay(appid: "91d1bdf68443fc402651e2aedc1d640c", id: 1846266), type: FiveDayWeather.self) { result, error in
+            if error == nil {
+                guard let result else {
+                    return
+                }
+                self.data = result
+                DispatchQueue.main.async {
+                    tableView.reloadData()
+                }
+            }
         }
     }
 
@@ -34,15 +47,12 @@ final class MainViewController: UIViewController {
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return data.list.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FiveDaysTableViewCell.id, for: indexPath) as! FiveDaysTableViewCell
-        cell.dayLabel.text = "2/10"
-        cell.iconImageView.image = UIImage(systemName: "star")
-        cell.maxTempLabel.text = "10"
-        cell.minTempLabel.text = "1"
+        cell.configureCell(data: data, index: indexPath.row)
         return cell
     }
     

@@ -33,11 +33,11 @@ class FiveDaysView: BaseView {
     
     override func configureView() {
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = .clear
         tableView.separatorStyle = .singleLine
         
         title.label.text = "5일"
         
-        tableView.backgroundColor = .red
+        
     }
 }

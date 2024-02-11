@@ -56,15 +56,9 @@ final class MainView: BaseView {
     }
     
     override func configureView() {
-        backgroundColor = .blue
+        backgroundColor = .black
         scrollView.showsVerticalScrollIndicator = true
         scrollView.contentSize = CGSize(width: frame.width, height: frame.height * 2)
-        scrollView.backgroundColor = .purple
-        
-        contentView.backgroundColor = .systemPink
-        currentView.backgroundColor = .brown
-        threeHourView.backgroundColor = .gray
-        fiveDaysView.backgroundColor = .yellow
     }
     
 }

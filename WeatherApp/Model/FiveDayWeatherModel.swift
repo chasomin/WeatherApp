@@ -12,10 +12,11 @@ struct FiveDayWeather: Decodable {
 }
 
 struct WeatherList: Decodable {
-    let weather: Weather
+    let weather: [Weather]
     let main: Main
     let wind: Wind
     let rain: Rain?
     let snow: Snow?
     let clouds: Cloud
+    let dt_txt: String
 }
