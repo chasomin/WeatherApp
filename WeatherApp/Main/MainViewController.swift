@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 final class MainViewController: UIViewController {
 
@@ -16,8 +15,8 @@ final class MainViewController: UIViewController {
         view = mainView
     }
     
-//    var currentData =
-    var data = FiveDayWeather(list: [])
+
+    var fiveDaysData = FiveDayWeather(list: [])
     
     override func viewDidLoad() {
         
@@ -28,31 +27,38 @@ final class MainViewController: UIViewController {
         setTableView(tableView: tableView, delegate: self, dataSource: self, cell: FiveDaysTableViewCell.self, id: FiveDaysTableViewCell.id)
         setCollectionView(collectionView: collectionView, delegate: self, dataSource: self, cell: ThreeHourCollectionViewCell.self, id: ThreeHourCollectionViewCell.id)
         
-        
-        WeatherAPIManager.shared.callRequest(api: .fiveDay(appid: "", id: 1846266), type: FiveDayWeather.self) { result, error in
+        // TODO: group, data Double 반올림
+        WeatherAPIManager.shared.callRequest(api: .current(appid: APIkey.key, id: 1846266), type: CurrentWeather.self) { result, error in
             if error == nil {
                 guard let result else {
                     return
                 }
-                self.data = result
-                DispatchQueue.main.async {
-                    tableView.reloadData()
-                }
+                self.mainView.currentView.setData(data: result)
             }
         }
+        WeatherAPIManager.shared.callRequest(api: .fiveDay(appid: APIkey.key, id: 1846266), type: FiveDayWeather.self) { result, error in
+            if error == nil {
+                guard let result else {
+                    return
+                }
+                self.fiveDaysData = result
+                tableView.reloadData()
+                collectionView.reloadData()
+            }
+        }
+        
     }
-
-
 }
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+    //TODO: 데이터 시간 없이 날짜별로 잘라서 나타내기
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.list.count
+        return fiveDaysData.list.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FiveDaysTableViewCell.id, for: indexPath) as! FiveDaysTableViewCell
-        cell.configureCell(data: data, index: indexPath.row)
+        cell.configureCell(data: fiveDaysData, index: indexPath.row)
         return cell
     }
     
@@ -61,12 +67,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return fiveDaysData.list.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThreeHourCollectionViewCell.id, for: indexPath) as! ThreeHourCollectionViewCell
-        
+        cell.configureCell(data: fiveDaysData, index: indexPath.item)
     return cell
     }
     

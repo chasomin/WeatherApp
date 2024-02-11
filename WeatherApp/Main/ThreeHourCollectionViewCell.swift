@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 final class ThreeHourCollectionViewCell: BaseCollectionViewCell {
     let hourLabel = UILabel()
@@ -22,6 +23,7 @@ final class ThreeHourCollectionViewCell: BaseCollectionViewCell {
     override func configureLayout() {
         hourLabel.snp.makeConstraints { make in
             make.top.horizontalEdges.equalToSuperview().inset(5)
+            make.height.equalTo(20)
         }
         
         iconImageView.snp.makeConstraints { make in
@@ -53,5 +55,12 @@ final class ThreeHourCollectionViewCell: BaseCollectionViewCell {
         iconImageView.image = UIImage(systemName: "star")
         tempLabel.text = "0도"
         
+    }
+    
+    func configureCell(data: FiveDayWeather, index: Int) {
+        let result = data.list[index]
+        hourLabel.text = result.dt_txt  //  TODO: 시간만 자르기
+        iconImageView.kf.setImage(with: URL(string: result.weather.first?.icon ?? ""))
+        tempLabel.text = "\(result.main.temp)"
     }
 }

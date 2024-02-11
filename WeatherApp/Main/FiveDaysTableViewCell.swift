@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class FiveDaysTableViewCell: BaseTableViewCell {
     let dayLabel = UILabel()

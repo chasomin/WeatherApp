@@ -64,4 +64,12 @@ final class CurrentView: BaseView {
         descriptionLabel.text = "맑음"
         maxMinTemp.text = "최고최저"
     }
+    
+    func setData(data: CurrentWeather) {
+        cityLabel.text = data.name
+        guard let main = data.main else { return }
+        currentTempLabel.text = "\(main.temp)"
+        descriptionLabel.text = data.weather.first?.main
+        maxMinTemp.text = "\(main.tempMax) | \(main.tempMin)"
+    }
 }

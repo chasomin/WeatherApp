@@ -31,32 +31,35 @@ struct WeatherAPIManager {
         }
         
         URLSession.shared.dataTask(with: url) { data, response, error in
-            guard error == nil else {
-                completionHandler(nil, .failedRequest)
-                print(RequestError.failedRequest.rawValue)
-                return
-            }
-            
-            guard let data else {
-                completionHandler(nil, .noData)
-                print(RequestError.noData.rawValue)
-                return
-            }
-            
-            guard let response = response as? HTTPURLResponse, (200...299) ~= response.statusCode else {
-                completionHandler(nil, .invaildResponse)
-                print(RequestError.invailData.rawValue)
-                return
-            }
-            do {
-                let result = try JSONDecoder().decode(type, from: data)
-                completionHandler(result, nil)
-                print(result)
+            DispatchQueue.main.async {
                 
-            } catch {
-                completionHandler(nil, .invailData)
-                print(error)
-                print(RequestError.invailData.rawValue)
+                guard error == nil else {
+                    completionHandler(nil, .failedRequest)
+                    print(RequestError.failedRequest.rawValue)
+                    return
+                }
+                
+                guard let data else {
+                    completionHandler(nil, .noData)
+                    print(RequestError.noData.rawValue)
+                    return
+                }
+                
+                guard let response = response as? HTTPURLResponse, (200...299) ~= response.statusCode else {
+                    completionHandler(nil, .invaildResponse)
+                    print(RequestError.invailData.rawValue)
+                    return
+                }
+                do {
+                    let result = try JSONDecoder().decode(type, from: data)
+                    completionHandler(result, nil)
+                    print(result)
+                    
+                } catch {
+                    completionHandler(nil, .invailData)
+                    print(error)
+                    print(RequestError.invailData.rawValue)
+                }
             }
             
         }.resume()

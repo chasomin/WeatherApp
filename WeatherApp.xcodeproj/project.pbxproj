@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		797910CA2B760E8500549B07 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797910C92B760E8500549B07 /* MainView.swift */; };
 		797910CC2B76194500549B07 /* ThreeHourIntervalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797910CB2B76194500549B07 /* ThreeHourIntervalView.swift */; };
-		797910CF2B761C0E00549B07 /* IndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797910CE2B761C0E00549B07 /* IndicatorView.swift */; };
+		797910CF2B761C0E00549B07 /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797910CE2B761C0E00549B07 /* DividerView.swift */; };
 		797910D12B76231A00549B07 /* CurrentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797910D02B76231A00549B07 /* CurrentView.swift */; };
 		797910D32B76297B00549B07 /* FiveDaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797910D22B76297B00549B07 /* FiveDaysView.swift */; };
 		797910D72B762E5900549B07 /* FiveDaysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797910D62B762E5900549B07 /* FiveDaysTableViewCell.swift */; };
@@ -18,6 +18,7 @@
 		797911062B79093B00549B07 /* identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797911052B79093B00549B07 /* identifier.swift */; };
 		797911092B79110B00549B07 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 797911082B79110B00549B07 /* Kingfisher */; };
 		7979110B2B79194A00549B07 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7979110A2B79194A00549B07 /* .gitignore */; };
+		7979110D2B79199600549B07 /* APIkey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7979110C2B79199600549B07 /* APIkey.swift */; };
 		79F4BD8C2B75EB02000EDC0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F4BD8B2B75EB02000EDC0C /* AppDelegate.swift */; };
 		79F4BD8E2B75EB02000EDC0C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F4BD8D2B75EB02000EDC0C /* SceneDelegate.swift */; };
 		79F4BD902B75EB02000EDC0C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F4BD8F2B75EB02000EDC0C /* MainViewController.swift */; };
@@ -41,7 +42,7 @@
 /* Begin PBXFileReference section */
 		797910C92B760E8500549B07 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		797910CB2B76194500549B07 /* ThreeHourIntervalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeHourIntervalView.swift; sourceTree = "<group>"; };
-		797910CE2B761C0E00549B07 /* IndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorView.swift; sourceTree = "<group>"; };
+		797910CE2B761C0E00549B07 /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
 		797910D02B76231A00549B07 /* CurrentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentView.swift; sourceTree = "<group>"; };
 		797910D22B76297B00549B07 /* FiveDaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiveDaysView.swift; sourceTree = "<group>"; };
 		797910D62B762E5900549B07 /* FiveDaysTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiveDaysTableViewCell.swift; sourceTree = "<group>"; };
@@ -49,6 +50,7 @@
 		797910DA2B773F3B00549B07 /* ThreeHourCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeHourCollectionViewCell.swift; sourceTree = "<group>"; };
 		797911052B79093B00549B07 /* identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = identifier.swift; sourceTree = "<group>"; };
 		7979110A2B79194A00549B07 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		7979110C2B79199600549B07 /* APIkey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIkey.swift; sourceTree = "<group>"; };
 		79F4BD882B75EB02000EDC0C /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79F4BD8B2B75EB02000EDC0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		79F4BD8D2B75EB02000EDC0C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,7 +88,7 @@
 		797910CD2B761BA200549B07 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
-				797910CE2B761C0E00549B07 /* IndicatorView.swift */,
+				797910CE2B761C0E00549B07 /* DividerView.swift */,
 				797910D82B762F1D00549B07 /* SectionTitleLabel.swift */,
 			);
 			path = Custom;
@@ -127,6 +129,7 @@
 				79F4BD942B75EB03000EDC0C /* Assets.xcassets */,
 				79F4BD962B75EB03000EDC0C /* LaunchScreen.storyboard */,
 				79F4BD992B75EB03000EDC0C /* Info.plist */,
+				7979110C2B79199600549B07 /* APIkey.swift */,
 			);
 			path = WeatherApp;
 			sourceTree = "<group>";
@@ -294,12 +297,13 @@
 				79F4BD8C2B75EB02000EDC0C /* AppDelegate.swift in Sources */,
 				797910D92B762F1D00549B07 /* SectionTitleLabel.swift in Sources */,
 				79F4BDAC2B75ECA6000EDC0C /* WeatherAPIManager.swift in Sources */,
-				797910CF2B761C0E00549B07 /* IndicatorView.swift in Sources */,
+				797910CF2B761C0E00549B07 /* DividerView.swift in Sources */,
 				797910D32B76297B00549B07 /* FiveDaysView.swift in Sources */,
 				79F4BDBA2B76083C000EDC0C /* BaseCollectionViewCell.swift in Sources */,
 				79F4BD8E2B75EB02000EDC0C /* SceneDelegate.swift in Sources */,
 				79F4BDAF2B75F44C000EDC0C /* FiveDayWeatherModel.swift in Sources */,
 				79F4BDB62B7607E9000EDC0C /* BaseView.swift in Sources */,
+				7979110D2B79199600549B07 /* APIkey.swift in Sources */,
 				79F4BDB12B75F455000EDC0C /* WeatherModel.swift in Sources */,
 				79F4BDB82B760831000EDC0C /* BaseTableViewCell.swift in Sources */,
 				79F4BDBD2B7609B9000EDC0C /* ConfigureUIProtocol.swift in Sources */,

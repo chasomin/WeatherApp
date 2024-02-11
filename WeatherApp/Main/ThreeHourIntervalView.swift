@@ -10,7 +10,7 @@ import SnapKit
 
 final class ThreeHourIntervalView: BaseView {
     let title = SectionTitleLabel()
-    let indicator = IndicatorView()
+    let divider = DividerView()
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
     
     static func collectionViewLayout() -> UICollectionViewLayout {
@@ -28,7 +28,7 @@ final class ThreeHourIntervalView: BaseView {
     
     override func configureHierarchy() {
         addSubview(title)
-        addSubview(indicator)
+        addSubview(divider)
         addSubview(collectionView)
     }
     
@@ -38,7 +38,7 @@ final class ThreeHourIntervalView: BaseView {
             make.horizontalEdges.top.equalTo(safeAreaLayoutGuide).inset(5)
         }
         
-        indicator.snp.makeConstraints { make in
+        divider.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview().inset(5)
             make.top.equalTo(title.snp.bottom).offset(5)
             make.height.equalTo(1)
@@ -46,7 +46,7 @@ final class ThreeHourIntervalView: BaseView {
         collectionView.snp.makeConstraints { make in
             make.horizontalEdges.bottom.equalToSuperview().inset(5)
             make.height.equalTo(200)
-            make.top.equalTo(indicator.snp.bottom).offset(5)
+            make.top.equalTo(divider.snp.bottom).offset(5)
         }
     }
     

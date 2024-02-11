@@ -34,24 +34,24 @@ final class MainView: BaseView {
         contentView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
             make.width.equalToSuperview()
-            make.height.equalToSuperview().multipliedBy(2)  // 높이 지정 필요??
+            make.height.equalTo(1000)  // 높이 지정 필요??
         }
         
         currentView.snp.makeConstraints { make in
-            make.top.horizontalEdges.equalTo(contentView)
+            make.horizontalEdges.equalTo(contentView)
+            make.top.equalTo(contentView).offset(20)
         }
         
         threeHourView.snp.makeConstraints { make in
-            make.top.equalTo(currentView.snp.bottom).offset(10)
+            make.top.equalTo(currentView.snp.bottom).offset(20)
             make.horizontalEdges.equalTo(contentView)
             make.height.equalTo(300)
         }
         fiveDaysView.snp.makeConstraints { make in
-            make.top.equalTo(threeHourView.snp.bottom).offset(10)
+            make.top.equalTo(threeHourView.snp.bottom).offset(20)
             make.horizontalEdges.equalTo(contentView)
-//            make.bottom.equalTo(scrollView.snp.bottom)
             make.height.equalTo(300)
-
+            
         }
     }
     

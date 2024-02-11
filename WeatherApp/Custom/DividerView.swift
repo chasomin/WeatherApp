@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class IndicatorView: UIView {
+final class DividerView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
