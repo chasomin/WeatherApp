@@ -29,31 +29,50 @@ final class MainViewController: UIViewController {
         setTableView(tableView: tableView, delegate: self, dataSource: self, cell: FiveDaysTableViewCell.self, id: FiveDaysTableViewCell.id)
         setCollectionView(collectionView: collectionView, delegate: self, dataSource: self, cell: ThreeHourCollectionViewCell.self, id: ThreeHourCollectionViewCell.id)
         
-        // TODO: group, 함수로 빼기
-        WeatherAPIManager.shared.callRequest(api: .current(appid: APIkey.key, id: 1835847), type: CurrentWeather.self) { result, error in
+        request(id: 1835847)
+    }
+    
+    @objc func searchButtonTapped() {
+        
+        let vc = SearchViewController()
+        vc.cityData = { data in
+            self.request(id: data.id)
+        }
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func request(id: Int) {
+        
+        let group = DispatchGroup()
+        
+        group.enter()
+        WeatherAPIManager.shared.callRequest(api: .current(appid: APIkey.key, id: id), type: CurrentWeather.self) { result, error in
             if error == nil {
                 guard let result else {
                     return
                 }
                 self.mainView.currentView.setData(data: result)
             }
+            group.leave()
         }
-        WeatherAPIManager.shared.callRequest(api: .fiveDay(appid: APIkey.key, id: 1835847), type: FiveDayWeather.self) { result, error in
+        
+        group.enter()
+        WeatherAPIManager.shared.callRequest(api: .fiveDay(appid: APIkey.key, id: id), type: FiveDayWeather.self) { result, error in
             if error == nil {
                 guard let result else {
                     return
                 }
                 self.fiveDaysData = result
-                tableView.reloadData()
-                collectionView.reloadData()
             }
+            group.leave()
         }
-        
-    }
-    
-    @objc func searchButtonTapped() {
-        // TODO: 검색 뷰 이동
-        navigationController?.pushViewController(SearchViewController(), animated: true)
+
+        group.notify(queue: .main) {
+            let tableView = self.mainView.fiveDaysView.tableView
+            let collectionView = self.mainView.threeHourView.collectionView
+            tableView.reloadData()
+            collectionView.reloadData()
+        }
     }
 }
 

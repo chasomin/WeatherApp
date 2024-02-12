@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class SearchTableViewCell: BaseTableViewCell {
+final class SearchTableViewCell: BaseTableViewCell {
     
     let icon = UIImageView()
     let cityNameLabel = UILabel()
@@ -44,6 +44,8 @@ class SearchTableViewCell: BaseTableViewCell {
     }
 
     override func configureView() {
+        selectionStyle = .none
+        
         icon.image = UIImage(systemName: "number")
         icon.tintColor = .white
         

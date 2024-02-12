@@ -6,15 +6,16 @@
 //
 
 import UIKit
-//TODO: 역 값 전달 꼭 연습하기
-class SearchViewController: UIViewController {
+//TODO: 검색 구현
+final class SearchViewController: UIViewController {
     let mainView = SearchView()
     
     override func loadView() {
         view = mainView
     }
     
-    var cityData: [City] = []
+    var cityDataList: [City] = []
+    var cityData: ((City) -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,8 @@ class SearchViewController: UIViewController {
         
         
         CityDataParsing.shared.load { cityResult in
-            self.cityData = cityResult
+            self.cityDataList = cityResult
+            self.mainView.tableView.reloadData()
         }
         
         setTableView(tableView: mainView.tableView, delegate: self, dataSource: self, cell: SearchTableViewCell.self, id: SearchTableViewCell.id)
@@ -36,15 +38,21 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cityData.count
+        return cityDataList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.id, for: indexPath) as! SearchTableViewCell
         
-        cell.configureCell(data: cityData, index: indexPath.row)
+        cell.configureCell(data: cityDataList, index: indexPath.row)
         
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+             
+        
+        cityData?(self.cityDataList[indexPath.row])
+        navigationController?.popViewController(animated: true)
+    }
 }
