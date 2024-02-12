@@ -10,7 +10,8 @@ import UIKit
 class BaseCollectionViewCell: UICollectionViewCell, ConfigureUI {
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        backgroundColor = .clear
+
         configureHierarchy()
         configureLayout()
         configureView()
