@@ -49,12 +49,7 @@ final class ThreeHourCollectionViewCell: BaseCollectionViewCell {
         tempLabel.font = .systemFont(ofSize: 13)
         tempLabel.textColor = .white
         
-        
-        //test
-        hourLabel.text = "12시"
-        iconImageView.image = UIImage(systemName: "star")
-        tempLabel.text = "0도"
-        
+                
     }
     
     func configureCell(data: FiveDayWeather, index: Int) {

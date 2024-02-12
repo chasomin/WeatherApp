@@ -47,7 +47,7 @@ final class MainView: BaseView {
         
         currentView.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(contentView)
-            make.top.equalTo(contentView).offset(20)
+            make.top.equalTo(contentView)
         }
         
         threeHourView.snp.makeConstraints { make in

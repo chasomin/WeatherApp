@@ -59,10 +59,10 @@ final class CurrentView: BaseView {
         maxMinTemp.textColor = .white
 
         
-        cityLabel.text = "도봉구"
-        currentTempLabel.text = "10"
-        descriptionLabel.text = "맑음"
-        maxMinTemp.text = "최고최저"
+        cityLabel.text = "---"
+        currentTempLabel.text = "--"
+        descriptionLabel.text = "--"
+        maxMinTemp.text = "-- | --"
     }
     
     func setData(data: CurrentWeather) {
