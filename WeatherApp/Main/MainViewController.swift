@@ -29,7 +29,7 @@ final class MainViewController: UIViewController {
         setTableView(tableView: tableView, delegate: self, dataSource: self, cell: FiveDaysTableViewCell.self, id: FiveDaysTableViewCell.id)
         setCollectionView(collectionView: collectionView, delegate: self, dataSource: self, cell: ThreeHourCollectionViewCell.self, id: ThreeHourCollectionViewCell.id)
         
-        // TODO: group
+        // TODO: group, 함수로 빼기
         WeatherAPIManager.shared.callRequest(api: .current(appid: APIkey.key, id: 1835847), type: CurrentWeather.self) { result, error in
             if error == nil {
                 guard let result else {
@@ -53,6 +53,7 @@ final class MainViewController: UIViewController {
     
     @objc func searchButtonTapped() {
         // TODO: 검색 뷰 이동
+        navigationController?.pushViewController(SearchViewController(), animated: true)
     }
 }
 
