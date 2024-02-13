@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class FiveDaysTableViewCell: BaseTableViewCell {
+final class FiveDaysTableViewCell: BaseTableViewCell {
     let dayLabel = UILabel()
     let iconImageView = UIImageView()
     let minTempLabel = UILabel()

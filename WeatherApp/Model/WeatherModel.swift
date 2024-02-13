@@ -32,10 +32,10 @@ struct Weather: Decodable {
 }
 
 struct Main: Decodable {
-    let temp: Double
+    private let temp: Double
     let feelsLike: Double
-    let tempMin: Double
-    let tempMax: Double
+    private let tempMin: Double
+    private let tempMax: Double
     let humidity: Int
     
     enum CodingKeys: String, CodingKey {

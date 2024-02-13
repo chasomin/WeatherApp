@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class FiveDaysView: BaseView {
+final class FiveDaysView: BaseView {
     let backgroundView = BlackAlphaBackgroundView()
     
     let title = SectionTitleLabel()

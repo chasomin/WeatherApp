@@ -24,7 +24,7 @@ struct WeatherList: Decodable {
     let rain: Rain?
     let snow: Snow?
     let clouds: Cloud
-    let dt_txt: String
+    fileprivate let dt_txt: String
     
     var time: String {
         let format = DateFormatter()
