@@ -30,6 +30,8 @@ final class SearchViewController: UIViewController {
         }
         
         setTableView(tableView: mainView.tableView, delegate: self, dataSource: self, cell: SearchTableViewCell.self, id: SearchTableViewCell.id)
+        
+        mainView.searchBar.delegate = self
     }
     
 
@@ -54,5 +56,17 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         
         cityData?(self.cityDataList[indexPath.row])
         navigationController?.popViewController(animated: true)
+    }
+}
+
+extension SearchViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        CityDataParsing.shared.load { cityList in
+            let filterData = cityList.filter {
+                $0.name.contains(searchBar.text!)
+            }
+            self.cityDataList = filterData
+            self.mainView.tableView.reloadData()
+        }
     }
 }
