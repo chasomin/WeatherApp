@@ -61,9 +61,10 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchText = searchBar.text?.lowercased() else { return }
         CityDataParsing.shared.load { cityList in
             let filterData = cityList.filter {
-                $0.name.contains(searchBar.text!)
+                $0.name.lowercased().contains(searchText)
             }
             self.cityDataList = filterData
             self.mainView.tableView.reloadData()
