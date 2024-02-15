@@ -6,7 +6,7 @@
 //
 
 import UIKit
-//TODO: 검색 구현
+
 final class SearchViewController: UIViewController {
     let mainView = SearchView()
     
@@ -15,7 +15,7 @@ final class SearchViewController: UIViewController {
     }
     
     var cityDataList: [City] = []
-    var cityData: ((City) -> Void)?
+//    var cityData: ((City) -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +32,7 @@ final class SearchViewController: UIViewController {
         setTableView(tableView: mainView.tableView, delegate: self, dataSource: self, cell: SearchTableViewCell.self, id: SearchTableViewCell.id)
         
         mainView.searchBar.delegate = self
+        
     }
     
 
@@ -52,9 +53,10 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-             
+        NotificationCenter.default.post(name: NSNotification.Name("SearchCity"), object: nil, userInfo: ["cityID":self.cityDataList[indexPath.row].id])
+
         
-        cityData?(self.cityDataList[indexPath.row])
+//        cityData?(self.cityDataList[indexPath.row])
         navigationController?.popViewController(animated: true)
     }
 }

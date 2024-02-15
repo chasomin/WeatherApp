@@ -30,14 +30,22 @@ final class MainViewController: UIViewController {
         setCollectionView(collectionView: collectionView, delegate: self, dataSource: self, cell: ThreeHourCollectionViewCell.self, id: ThreeHourCollectionViewCell.id)
         
         request(id: 1835847)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(searchReceivedNotification), name: NSNotification.Name("SearchCity"), object: nil)
+    }
+    
+    @objc func searchReceivedNotification(notification: NSNotification) {
+        if let value = notification.userInfo?["cityID"] as? Int {
+            self.request(id: value)
+        }
     }
     
     @objc func searchButtonTapped() {
         
         let vc = SearchViewController()
-        vc.cityData = { data in
-            self.request(id: data.id)
-        }
+//        vc.cityData = { data in
+//            self.request(id: data.id)
+//        }
         navigationController?.pushViewController(vc, animated: true)
     }
     
